@@ -11,7 +11,7 @@ var controller = {
     return a - b;
   },
   greeting: function() {
-    return 'Hi.'
+    return 'Hi.';
   },
   keys: function(object) {
     var keys = [];
@@ -22,6 +22,11 @@ var controller = {
   },
   passThrough: function(value) {
     return value;
+  },
+  informal: {
+    greeting: function() {
+      return 'Yo!';
+    }
   }
 };
 controller.model = {
@@ -165,6 +170,11 @@ describe('Expression::get', function() {
   it('gets an fn expression with no args', function() {
     var expression = createPathExpression('greeting()');
     expect(expression.get(context)).to.equal('Hi.');
+  });
+
+  it('gets an fn expression on a subpath', function() {
+    var expression = createPathExpression('informal.greeting()');
+    expect(expression.get(context)).to.equal('Yo!');
   });
 
   it('gets an fn expression with relative paths', function() {
