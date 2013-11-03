@@ -1,4 +1,4 @@
+exports.contexts = require('./lib/contexts');
 exports.expressions = require('./lib/expressions');
-exports.defaultFns = require('./lib/defaultFns');
+exports.operatorFns = require('./lib/operatorFns');
 exports.createPathExpression = require('./lib/createPathExpression');
-
