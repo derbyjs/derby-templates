@@ -1,5 +1,5 @@
-var expressions = require('./expressions');
-var operatorFns = require('./operatorFns');
+var expressions = require('./lib/expressions');
+var operatorFns = require('./lib/operatorFns');
 var esprima = require('esprima-derby');
 var Syntax = esprima.Syntax;
 
