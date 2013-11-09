@@ -34,6 +34,8 @@ function reduce(node) {
     return reduceObjectExpression(node);
   } else if (type === Syntax.SequenceExpression) {
     return reduceSequenceExpression(node);
+  } else if (type === Syntax.NewExpression) {
+    return reduceNewExpression(node);
   }
   unexpected(node);
 }
@@ -79,6 +81,8 @@ function reducePath(node, segment, afterSegments) {
       return reduceCallExpression(node, segments);
     } else if (node.type === Syntax.SequenceExpression) {
       return reduceSequenceExpression(node, segments);
+    } else if (node.type === Syntax.NewExpression) {
+      return reduceNewExpression(node, segments);
     } else {
       unexpected(node);
     }
@@ -98,15 +102,23 @@ function reduceThis(node) {
 }
 
 function reduceCallExpression(node, afterSegments) {
+  return reduceFnExpression(node, afterSegments, expressions.FnExpression, expressions.TreeFnExpression);
+}
+
+function reduceNewExpression(node, afterSegments) {
+  return reduceFnExpression(node, afterSegments, expressions.NewExpression, expressions.TreeNewExpression);
+}
+
+function reduceFnExpression(node, afterSegments, Expression, TreeExpression) {
   var args = node.arguments.map(reduce);
   var callee = node.callee;
   if (callee.type === Syntax.Identifier) {
     var name = callee.name;
-    return new expressions.FnExpression(name, args, afterSegments);
+    return new Expression(name, args, afterSegments);
   } else if (callee.type === Syntax.MemberExpression) {
     var segments = reduceMemberExpression(callee).segments;
     var name = segments.join('.');
-    return new expressions.TreeFnExpression(name, segments, args, afterSegments);
+    return new TreeExpression(name, segments, args, afterSegments);
   } else {
     unexpected(node);
   }

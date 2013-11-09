@@ -6,28 +6,30 @@ var create = require('../create');
 var controller = {
   plus: function(a, b) {
     return a + b;
-  },
-  minus: function(a, b) {
+  }
+, minus: function(a, b) {
     return a - b;
-  },
-  greeting: function() {
+  }
+, greeting: function() {
     return 'Hi.';
-  },
-  keys: function(object) {
+  }
+, keys: function(object) {
     var keys = [];
     for (var key in object) {
       keys.push(key);
     }
     return keys;
-  },
-  passThrough: function(value) {
+  }
+, passThrough: function(value) {
     return value;
-  },
-  informal: {
+  }
+, informal: {
     greeting: function() {
       return 'Yo!';
     }
   }
+, Date: Date
+, global: global
 };
 controller.model = {
   data: {
@@ -223,6 +225,24 @@ describe('Expression::get', function() {
     var expression2 = create('plus(minus(_page.nums[3], _page.nums[2]), _page.nums[1])');
     expect(expression.get(context)).to.equal(6);
     expect(expression2.get(context)).to.equal(15);
+  });
+
+  it('gets a `new` expression without arguments', function() {
+    var expression = create('new Date');
+    var date = expression.get(context);
+    expect(date).to.be.a(Date);
+  });
+
+  it('gets a `new` expression with arguments', function() {
+    var expression = create('new Date(2000, 0)');
+    var date = expression.get(context);
+    expect(date.getFullYear()).equal(2000);
+    expect(date.getMonth()).equal(0);
+  });
+
+  it('gets `new` expression on nested path', function() {
+    var expression = create('new global.Error()');
+    expect(expression.get(context)).to.be.a(Error);
   });
 
   it('gets literal values', function() {
