@@ -102,23 +102,22 @@ function reduceThis(node) {
 }
 
 function reduceCallExpression(node, afterSegments) {
-  return reduceFnExpression(node, afterSegments, expressions.FnExpression, expressions.TreeFnExpression);
+  return reduceFnExpression(node, afterSegments, expressions.FnExpression);
 }
 
 function reduceNewExpression(node, afterSegments) {
-  return reduceFnExpression(node, afterSegments, expressions.NewExpression, expressions.TreeNewExpression);
+  return reduceFnExpression(node, afterSegments, expressions.NewExpression);
 }
 
-function reduceFnExpression(node, afterSegments, Expression, TreeExpression) {
+function reduceFnExpression(node, afterSegments, Constructor) {
   var args = node.arguments.map(reduce);
   var callee = node.callee;
   if (callee.type === Syntax.Identifier) {
-    var name = callee.name;
-    return new Expression(name, args, afterSegments);
+    var segments = [callee.name];
+    return new Constructor(segments, args, afterSegments);
   } else if (callee.type === Syntax.MemberExpression) {
     var segments = reduceMemberExpression(callee).segments;
-    var name = segments.join('.');
-    return new TreeExpression(name, segments, args, afterSegments);
+    return new Constructor(segments, args, afterSegments);
   } else {
     unexpected(node);
   }
