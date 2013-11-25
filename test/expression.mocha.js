@@ -33,7 +33,8 @@ var controller = {
 };
 controller.model = {
   data: {
-    _page: {
+    key: 'green'
+  , _page: {
       colors: {
         green: {
           name: 'Green'
@@ -97,6 +98,13 @@ describe('Expression::resolve', function() {
     var childContext = context.child(withExpression);
     expect(expression.resolve(childContext)).to.eql(['_page', 'colors', 'green']);
     expect(expression2.resolve(childContext)).to.eql(['_page', 'colors', 'green', 'name']);
+  });
+
+  it('resolves square brackets expressions with single segments', function() {
+    var expression = create('colors[key]');
+    var expression2 = create('colors[key].name');
+    expect(expression.resolve(context)).to.eql(['colors', 'green']);
+    expect(expression2.resolve(context)).to.eql(['colors', 'green', 'name']);
   });
 
   it('resolves simple square brackets expressions', function() {

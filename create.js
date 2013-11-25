@@ -63,13 +63,10 @@ function reducePath(node, segment, afterSegments) {
   var relative = false;
   while (node = node.object) {
     if (node.type === Syntax.MemberExpression) {
-      if (node.property.type === Syntax.Identifier) {
-        segments.unshift(node.property.name);
-      } else if (
-        node.property.type === Syntax.MemberExpression ||
-        node.property.type === Syntax.Literal
-      ) {
+      if (node.computed) {
         return reduceMemberExpression(node, segments);
+      } else if (node.property.type === Syntax.Identifier) {
+        segments.unshift(node.property.name);
       } else {
         unexpected(node);
       }
