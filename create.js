@@ -84,18 +84,38 @@ function reducePath(node, segment, afterSegments) {
       unexpected(node);
     }
   }
-  return new expressions.PathExpression(segments, relative);
+  return (relative) ?
+    new expressions.RelativePathExpression(segments) :
+    createSegmentsExpression(segments);
 }
 
 function reduceIdentifier(node) {
   var segments = [node.name];
-  return new expressions.PathExpression(segments);
+  return createSegmentsExpression(segments);
 }
 
 function reduceThis(node) {
   var segments = [];
-  var relative = true;
-  return new expressions.PathExpression(segments, relative);
+  return new expressions.RelativePathExpression(segments);
+}
+
+function createSegmentsExpression(segments) {
+  var firstSegment = segments[0];
+  var firstChar = firstSegment.charAt && firstSegment.charAt(0);
+
+  if (firstChar === '#') {
+    var alias = firstSegment;
+    segments.shift();
+    return new expressions.AliasPathExpression(alias, segments);
+
+  } else if (firstChar === '@') {
+    var attribute = firstSegment.slice(1);
+    segments.shift();
+    return new expressions.AttributePathExpression(attribute, segments);
+
+  } else {
+    return new expressions.PathExpression(segments);
+  }
 }
 
 function reduceCallExpression(node, afterSegments) {
