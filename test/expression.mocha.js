@@ -372,7 +372,7 @@ describe('Expression::get', function() {
 
 });
 
-describe.skip('Expression::dependencies', function() {
+describe('Expression::dependencies', function() {
 
   it('gets simple path dependencies', function() {
     var expression = create('_page.colors.green.name');
