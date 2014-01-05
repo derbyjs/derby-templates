@@ -1,5 +1,5 @@
 {
-  "name": "derby-expressions",
+  "name": "derby-templates",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
@@ -9,9 +9,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "esprima-derby": "~1.1.0-dev"
-  , "serialize-object": "~0.0.2"
-  , "saddle": "~0.1.0"
+    "saddle": "~0.1.0",
+    "serialize-object": "~0.0.2"
   },
   "devDependencies": {
     "expect.js": "~0.2.0"
