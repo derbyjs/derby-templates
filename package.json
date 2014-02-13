@@ -9,7 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "saddle": "~0.0.2",
+    "saddle": "git://github.com/codeparty/saddle.git",
     "serialize-object": "~0.0.2"
   },
   "devDependencies": {
