@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --recursive test --bail --colors --reporter spec --debug"
+    "test": "./node_modules/.bin/mocha && ./node_modules/.bin/jshint lib/*.js test/*.js"
   },
   "author": "",
   "license": "MIT",
@@ -13,6 +13,8 @@
     "serialize-object": "~0.0.5"
   },
   "devDependencies": {
-    "expect.js": "~0.2.0"
+    "expect.js": "~0.3.1",
+    "jshint": "~2.4.4",
+    "mocha": "~1.17.1"
   }
 }
