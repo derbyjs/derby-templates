@@ -9,7 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "saddle": "^0.5.0",
+    "saddle": "^0.6.0",
     "serialize-object": "~0.0.5"
   },
   "devDependencies": {
