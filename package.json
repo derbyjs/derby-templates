@@ -6,11 +6,18 @@
   "scripts": {
     "test": "./node_modules/.bin/mocha && ./node_modules/.bin/jshint lib/*.js test/*.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/derbyjs/derby-templates.git"
+  },
   "author": "",
   "license": "MIT",
   "dependencies": {
     "saddle": "^0.6.0",
     "serialize-object": "~0.0.5"
+  },
+  "bugs": {
+    "url": "https://github.com/derbyjs/derby-templates/issues"
   },
   "devDependencies": {
     "expect.js": "~0.3.1",
