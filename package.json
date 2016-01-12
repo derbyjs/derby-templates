@@ -13,7 +13,7 @@
   "license": "MIT",
   "dependencies": {
     "saddle": "^0.6.0",
-    "serialize-object": "~0.0.5"
+    "serialize-object": "^1.0.0"
   },
   "bugs": {
     "url": "https://github.com/derbyjs/derby-templates/issues"
