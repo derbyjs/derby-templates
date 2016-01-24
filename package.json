@@ -1,6 +1,6 @@
 {
   "name": "derby-templates",
-  "version": "0.3.8",
+  "version": "0.4.0",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha && ./node_modules/.bin/jshint lib/*.js test/*.js"
