@@ -12,7 +12,7 @@
   "author": "Nate Smith",
   "license": "MIT",
   "dependencies": {
-    "saddle": "^0.8.0",
+    "saddle": "^0.9.1",
     "serialize-object": "^1.0.0"
   },
   "bugs": {
