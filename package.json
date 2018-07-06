@@ -19,9 +19,9 @@
     "url": "https://github.com/derbyjs/derby-templates/issues"
   },
   "devDependencies": {
-    "expect.js": "~0.3.1",
-    "jshint": "~2.4.4",
-    "mocha": "~1.17.1"
+    "expect.js": "^0.3.1",
+    "jshint": "^2.9.5",
+    "mocha": "^5.2.0"
   },
   "homepage": "https://github.com/derbyjs/derby-templates#readme",
   "directories": {
